@@ -61,12 +61,20 @@ KERNEL_FEATURES:corstone1000 = ""
 #
 # FVP BASE KMACHINE
 #
+
+# mb: Adding my kernel repo and autorev (take the last commit on the branch)
+SRC_URI:fvp-base = "git://github.com/MarekBykowski/linux-yocto.git;name=machine;branch=${KBRANCH};protocol=https \
+		    git://git.yoctoproject.org/yocto-kernel-cache;type=kmeta;name=meta;branch=yocto-6.6;destsuffix=${KMETA};protocol=https"
+KBRANCH:fvp-base = "aem-forked-off-v6.6/standard/base"
+SRCREV_machine:fvp-base = "${AUTOREV}"
+
 COMPATIBLE_MACHINE:fvp-base = "fvp-base"
 KMACHINE:fvp-base = "fvp"
 FILESEXTRAPATHS:prepend:fvp-base := "${ARMBSPFILESPATHS}:${ARMFILESPATHS}"
 SRC_URI:append:fvp-base = " \
     file://0001-arm64-dts-fvp-Enable-virtio-rng-support.patch \
     file://tee.cfg \
+    file://enable-stack-tracer.cfg \
     ${@bb.utils.contains('MACHINE_FEATURES', 'ts-smm-gateway', \
                          'file://no-strict-devmem.cfg', '' , d)} \
 "
