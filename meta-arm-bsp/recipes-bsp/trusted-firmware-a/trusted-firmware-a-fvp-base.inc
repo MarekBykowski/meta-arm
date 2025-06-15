@@ -61,5 +61,5 @@ TFA_BUILD_TARGET = "bl1 bl2 bl31 dtbs fip"
 
 EXTRA_OEMAKE += "FVP_DT_PREFIX=fvp-base-gicv3-psci-1t FVP_USE_GIC_DRIVER=FVP_GICV3"
 
-# Our fvp-base machine explicitly has v8.4 cores
-EXTRA_OEMAKE += "ARM_ARCH_MAJOR=8 ARM_ARCH_MINOR=4"
+# Our fvp-base machine explicitly has v8.2 cores
+EXTRA_OEMAKE += "ARM_ARCH_MAJOR=8 ARM_ARCH_MINOR=2"
